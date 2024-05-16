@@ -11,5 +11,6 @@ target 'FinalProject' do
 	pod 'FirebaseStorage' 
   pod 'Kingfisher'
   pod 'Alamofire'
+  pod 'SnapKit', '~> 5.7.0'
 
 end

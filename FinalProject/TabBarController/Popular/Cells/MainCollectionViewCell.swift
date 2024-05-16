@@ -7,7 +7,10 @@
 
 import UIKit
 
-class MainCollectionViewCell: UICollectionViewCell {
+final class MainCollectionViewCell: UICollectionViewCell {
+    
+    let dateFormatter = DateFormatter()
+    
     let label: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 15)
@@ -74,5 +77,33 @@ class MainCollectionViewCell: UICollectionViewCell {
             dateLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor,constant: -10),
             dateLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor,constant: -5),
         ])
+    }
+    
+    func timeSinceRelease(from releaseDate: Date) -> String {
+        let currentDate = Date()
+        let components = Calendar.current.dateComponents([.minute, .hour, .day], from: releaseDate, to: currentDate)
+        
+        if let days = components.day, days > 0 {
+            return "\(days)d ago"
+        } else if let hours = components.hour, hours > 0 {
+            return "\(hours)h ago"
+        } else if let minutes = components.minute, minutes > 0 {
+            return "\(minutes)m ago"
+        } else {
+            return "just now"
+        }
+    }
+    
+    public func configure(model: MainViewModel.CollectionDesk) {
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        if let releaseDate = dateFormatter.date(from: "2023-01-01 12:00:00") {
+            let releasedTime = timeSinceRelease(from: releaseDate)
+            dateLabel.text = releasedTime
+        } else {
+            print("Error parsing release date.")
+        }
+        
+        label.text = model.title
+        imageView.kf.setImage(with: model.image)
     }
 }

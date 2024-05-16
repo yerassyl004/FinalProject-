@@ -6,9 +6,12 @@
 //
 
 import UIKit
+import SnapKit
+import Kingfisher
 
-class NewsTableViewCell: UITableViewCell {
+final class NewsTableViewCell: UITableViewCell {
     
+    // MARK: - UI
     let titleLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
@@ -21,7 +24,6 @@ class NewsTableViewCell: UITableViewCell {
                 label.layer.shadowOpacity = 0.5
                 label.layer.shadowRadius = 2
         label.numberOfLines = 4
-//        label.backgroundColor = .green
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -88,6 +90,12 @@ class NewsTableViewCell: UITableViewCell {
             newsImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
             newsImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20)
         ])
+    }
+    
+    public func configure(model: MainViewModel.NewsDesk) {
+        titleLabel.text = model.title
+        contentLabel.text = model.content
+        newsImageView.kf.setImage(with: model.imageURL)
     }
 
 }
