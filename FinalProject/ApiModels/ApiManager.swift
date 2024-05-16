@@ -18,9 +18,9 @@ class ApiManager {
     let apiKey6 = "30011e306ec3482ba4c36b90dbb87194"
     let apiKey4 = "9e70313646a84a7582b392dcc11c9b9b"
     let apiKey3 = "3780f2a1d0254918a4a50e9b4dd4e52b"
-    let apiKey5 = "407853842ebf4a729ca6b7a5ad8e7208"
+    let apiKey2 = "e63872560a87485f82c3b703e4081395"
     let apiKey7 = "a8308d7db8824a43a11be5858e28e2e3"
-    let apiKey2 = "2febb110cc9e4cab9edc20feb056bec4"
+    let apiKey5 = "2febb110cc9e4cab9edc20feb056bec4"
     var sport = "sport"
     var medicine = "medicine"
     var education = "education"
@@ -110,7 +110,7 @@ class ApiManager {
             // Replace "YOUR_API_KEY" with your actual News API key
             
             //        https://newsapi.org/v2/everything?q=news&from=2023-12-15&sortBy=popularity&apiKey=407853842ebf4a729ca6b7a5ad8e7208&language=ru
-            let urlString = "https://newsapi.org/v2/everything?q=news&from=2023-12-21&apiKey=\(apiKey2)"
+            let urlString = "https://newsapi.org/v2/everything?q=news&from=2024-4-0&apiKey=\(apiKey2)"
             
             guard let url = URL(string: urlString) else {
                 completion(.failure(NetworkError.invalidURL))
@@ -145,7 +145,7 @@ class ApiManager {
             // Replace "YOUR_API_KEY" with your actual News API key
             
             //        https://newsapi.org/v2/everything?q=news&from=2023-12-15&sortBy=popularity&apiKey=407853842ebf4a729ca6b7a5ad8e7208&language=ru
-            let urlString = "https://newsapi.org/v2/everything?q=news&from=2023-12-13&sortBy=popularity&apiKey=\(apiKey2)"
+            let urlString = "https://newsapi.org/v2/everything?q=news&from=2024-4-0&sortBy=popularity&apiKey=\(apiKey2)"
             
             guard let url = URL(string: urlString) else {
                 completion(.failure(NetworkError.invalidURL))
@@ -181,7 +181,7 @@ class ApiManager {
             
             //        https://newsapi.org/v2/everything?q=news&from=2023-12-15&sortBy=popularity&apiKey=407853842ebf4a729ca6b7a5ad8e7208&language=ru
             //        https://newsapi.org/v2/top-headlines?country=us&apiKey=a8308d7db8824a43a11be5858e28e2e3
-            let urlString = "https://newsapi.org/v2/everything?q=news&from=2023-12-21&sortBy=popularity&apiKey=\(apiKey2)"
+            let urlString = "https://newsapi.org/v2/everything?q=news&from=2024-4-0&sortBy=popularity&apiKey=\(apiKey2)"
             
             guard let url = URL(string: urlString) else {
                 completion(.failure(NetworkError.invalidURL))
@@ -796,7 +796,7 @@ class ApiManager {
         let japan = "jp"
         
         func fetchNewsOnUS(completion: @escaping (Result<APINews, Error>) -> Void) {
-            let urlString = "https://newsapi.org/v2/everything?q=\(US)&from=2023-12-15&sortBy=popularity&apiKey=\(apiKey2)"
+            let urlString = "https://newsapi.org/v2/everything?q=\(US)&from=2024-5-0&sortBy=popularity&apiKey=\(apiKey2)"
             guard let url = URL(string: urlString) else {
                 completion(.failure(NetworkError.invalidURL))
                 return

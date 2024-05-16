@@ -675,8 +675,6 @@ extension MainNewsController: UICollectionViewDelegate, UICollectionViewDataSour
         cell.label.text = data.title
         cell.imageView.kf.setImage(with: url)
         cell.dateLabel.text = releasedTime
-//        cell.backgroundColor = .gray
-        
         
         return cell
     }

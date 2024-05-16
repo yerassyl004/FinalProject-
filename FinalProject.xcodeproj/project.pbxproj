@@ -12,6 +12,13 @@
 		0E0C43042B2F154800236267 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0C43032B2F154800236267 /* WebViewController.swift */; };
 		0E41558F2B32C36E00633AE7 /* EditController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E41558E2B32C36E00633AE7 /* EditController.swift */; };
 		0E4155912B32EF3900633AE7 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4155902B32EF3900633AE7 /* CoreDataManager.swift */; };
+		0E4F9CF82BF615B4005E39FD /* PopularPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4F9CF12BF615B4005E39FD /* PopularPresenter.swift */; };
+		0E4F9CF92BF615B4005E39FD /* PopularWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4F9CF22BF615B4005E39FD /* PopularWorker.swift */; };
+		0E4F9CFA2BF615B4005E39FD /* PopularRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4F9CF32BF615B4005E39FD /* PopularRouter.swift */; };
+		0E4F9CFB2BF615B4005E39FD /* PopularModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4F9CF42BF615B4005E39FD /* PopularModels.swift */; };
+		0E4F9CFC2BF615B4005E39FD /* PopularViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4F9CF52BF615B4005E39FD /* PopularViewController.swift */; };
+		0E4F9CFD2BF615B4005E39FD /* PopularInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4F9CF62BF615B4005E39FD /* PopularInteractor.swift */; };
+		0E4F9CFE2BF615B4005E39FD /* PopularConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4F9CF72BF615B4005E39FD /* PopularConfigurator.swift */; };
 		0E52CA4D2B35A198005E8FAC /* ContryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E52CA4C2B35A198005E8FAC /* ContryTableViewCell.swift */; };
 		0E53FD842B303EBB00EB9748 /* ExploreCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E53FD832B303EBB00EB9748 /* ExploreCollectionViewCell.swift */; };
 		0E760F772B313C7F0023001D /* HistoryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E760F762B313C7F0023001D /* HistoryData.swift */; };
@@ -56,6 +63,13 @@
 		0E0C43032B2F154800236267 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		0E41558E2B32C36E00633AE7 /* EditController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditController.swift; sourceTree = "<group>"; };
 		0E4155902B32EF3900633AE7 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		0E4F9CF12BF615B4005E39FD /* PopularPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularPresenter.swift; sourceTree = "<group>"; };
+		0E4F9CF22BF615B4005E39FD /* PopularWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularWorker.swift; sourceTree = "<group>"; };
+		0E4F9CF32BF615B4005E39FD /* PopularRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularRouter.swift; sourceTree = "<group>"; };
+		0E4F9CF42BF615B4005E39FD /* PopularModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularModels.swift; sourceTree = "<group>"; };
+		0E4F9CF52BF615B4005E39FD /* PopularViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularViewController.swift; sourceTree = "<group>"; };
+		0E4F9CF62BF615B4005E39FD /* PopularInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularInteractor.swift; sourceTree = "<group>"; };
+		0E4F9CF72BF615B4005E39FD /* PopularConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularConfigurator.swift; sourceTree = "<group>"; };
 		0E52CA4C2B35A198005E8FAC /* ContryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContryTableViewCell.swift; sourceTree = "<group>"; };
 		0E53FD832B303EBB00EB9748 /* ExploreCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreCollectionViewCell.swift; sourceTree = "<group>"; };
 		0E760F762B313C7F0023001D /* HistoryData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryData.swift; sourceTree = "<group>"; };
@@ -111,6 +125,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0E4F9CF02BF615A1005E39FD /* Popular */ = {
+			isa = PBXGroup;
+			children = (
+				0E4F9CF12BF615B4005E39FD /* PopularPresenter.swift */,
+				0E4F9CF22BF615B4005E39FD /* PopularWorker.swift */,
+				0E4F9CF32BF615B4005E39FD /* PopularRouter.swift */,
+				0E4F9CF42BF615B4005E39FD /* PopularModels.swift */,
+				0E4F9CF52BF615B4005E39FD /* PopularViewController.swift */,
+				0E4F9CF62BF615B4005E39FD /* PopularInteractor.swift */,
+				0E4F9CF72BF615B4005E39FD /* PopularConfigurator.swift */,
+			);
+			path = Popular;
+			sourceTree = "<group>";
+		};
 		0E52CA4B2B35A174005E8FAC /* Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -225,6 +253,7 @@
 		0EA56B212B2DC2AF00D6EC12 /* TabBarController */ = {
 			isa = PBXGroup;
 			children = (
+				0E4F9CF02BF615A1005E39FD /* Popular */,
 				0EA56B222B2DC2E000D6EC12 /* TabBarController.swift */,
 				0EA56AEC2B2D5DE700D6EC12 /* MainNewsController.swift */,
 				0EA56B242B2DC37F00D6EC12 /* ExploreController.swift */,
@@ -370,6 +399,13 @@
 				0EA56B1E2B2DA68F00D6EC12 /* ApiManager.swift in Sources */,
 				0EA56AED2B2D5DE700D6EC12 /* MainNewsController.swift in Sources */,
 				0E52CA4D2B35A198005E8FAC /* ContryTableViewCell.swift in Sources */,
+				0E4F9CF82BF615B4005E39FD /* PopularPresenter.swift in Sources */,
+				0E4F9CF92BF615B4005E39FD /* PopularWorker.swift in Sources */,
+				0E4F9CFA2BF615B4005E39FD /* PopularRouter.swift in Sources */,
+				0E4F9CFB2BF615B4005E39FD /* PopularModels.swift in Sources */,
+				0E4F9CFC2BF615B4005E39FD /* PopularViewController.swift in Sources */,
+				0E4F9CFD2BF615B4005E39FD /* PopularInteractor.swift in Sources */,
+				0E4F9CFE2BF615B4005E39FD /* PopularConfigurator.swift in Sources */,
 				0EA56B202B2DA98700D6EC12 /* APIData.swift in Sources */,
 				0E760F832B31BF3A0023001D /* ThemeModel.swift in Sources */,
 				0EA56B232B2DC2E000D6EC12 /* TabBarController.swift in Sources */,

@@ -10,5 +10,6 @@ target 'FinalProject' do
 	pod 'FirebaseFirestore'
 	pod 'FirebaseStorage' 
   pod 'Kingfisher'
+  pod 'Alamofire'
 
 end
