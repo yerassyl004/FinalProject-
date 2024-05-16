@@ -22,10 +22,9 @@ class MainNewsController: UIViewController, UIScrollViewDelegate {
     var tableViewHeight: CGFloat = 0
     
     var heigtTable = 0
-    
-    var newsDataHedliner: [Articles] = []
+    var newsTableData = [NewsDesk]()
     // MARK: - Properties
-    
+    private let viewModel = MainNewsViewModel()
     let activityIndicator = UIActivityIndicatorView(style: .large)
     
     private let scrollView: UIScrollView = {
@@ -46,8 +45,10 @@ class MainNewsController: UIViewController, UIScrollViewDelegate {
     
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     
-    let tableView: UITableView = {
+    private lazy var tableView: UITableView = {
         let table = UITableView()
+        table.dataSource = self
+        table.delegate = self
         table.backgroundColor = .systemBackground
         table.layer.cornerRadius = 10
         table.register(NewsTableViewCell.self, forCellReuseIdentifier: "cell")
@@ -150,15 +151,15 @@ class MainNewsController: UIViewController, UIScrollViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        viewModel.fetchNewsTableView()
+        self.newsTableData = viewModel.newsTableData
+        tableView.reloadData()
+        viewModel.navigationController = self.navigationController
         view.backgroundColor = UIColor.systemGray6
-//        scrollView.delegate = self
-//        self.navigationController?.isNavigationBarHidden = true
         navigationItem.title = "Popular"
                
         print(heigtTable)
         setupScrollView()
-        fetchNewsTableView()
         fetchNewsHedlines()
 //        CoreDataManager.shared.logCoreDataDBPath()
         AuthService.shared.fetchUser { [weak self] user, error in
@@ -217,25 +218,6 @@ class MainNewsController: UIViewController, UIScrollViewDelegate {
                     self.tableView.reloadData()
                     self.collectionView.reloadData()
                     self.heigtTable = Int(self.tableView.contentSize.height)
-                    self.isLoadingData = false
-                    
-                }
-            case .failure(let error):
-                print("Error fetching news data: \(error)")
-            }
-        }
-    }
-    
-    func fetchNewsTableView() {
-        isLoadingData = true
-        ApiManager.shared.fetchNewsMain { result in
-            switch result {
-            case .success(let newsData):
-                self.newsDataHedliner = newsData.articles
-                DispatchQueue.main.async {
-                    self.collectionView.reloadData()
-                    self.tableView.reloadData()
-                    self.updateTable(hilght: self.tableView.contentSize.height)
                     self.isLoadingData = false
                     
                 }
@@ -339,9 +321,6 @@ class MainNewsController: UIViewController, UIScrollViewDelegate {
         let vc = WebViewController()
         if let article = data.first {
             
-            
-            
-            vc.webURL = article.url
             let current = getCurrentDate()
             articleToAdd?.publishedAt = current.date
 //            if !History.shared.history.contains(where: {url == article }) {
@@ -404,7 +383,7 @@ class MainNewsController: UIViewController, UIScrollViewDelegate {
         
         if contentOffsetY > contentHeight - screenHeight - threshold && !isLoadingData {
             // User has scrolled to the bottom, trigger API call for more data
-            fetchNewsTableView()
+            
         }
         
         // Check if the user is scrolling up and close to the top
@@ -436,8 +415,6 @@ class MainNewsController: UIViewController, UIScrollViewDelegate {
         collectionView.isScrollEnabled = true
         collectionView.layer.cornerRadius = 10
         
-        tableView.dataSource = self
-        tableView.delegate = self
         tableView.isScrollEnabled = false
         tableView.reloadData()
     
@@ -545,40 +522,16 @@ class MainNewsController: UIViewController, UIScrollViewDelegate {
 
 extension MainNewsController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return newsDataHedliner.count
+        return viewModel.newsTableData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! NewsTableViewCell
-        let data = newsDataHedliner[indexPath.row]
-        print(data.title)
-        cell.backgroundColor = .systemBackground
-        
-        if let imageString = data.urlToImage {
-            
-            let url = URL(string: data.urlToImage ?? "")
-            cell.newsImageView.kf.setImage(with: url)
-            cell.contentLabel.text = data.description
-            cell.titleLabel.text = data.title
-        }
-        else {
-            cell.newsImageView.image = UIImage(systemName: "plus")
-            cell.contentLabel.text = data.description
-            cell.titleLabel.text = data.title
-        }
+        let cell = viewModel.cellNewsTable(tableView: tableView, indexPath: indexPath)
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let data = newsDataHedliner[indexPath.row]
-        
-        if let imageString = data.urlToImage {
-            
-            return 640
-        }
-        else {
-            return 250
-        }
+        return 640
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
@@ -586,34 +539,7 @@ extension MainNewsController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let data = newsDataHedliner[indexPath.row]
-        
-        var articleToAdd: Article?
-        
-        tableView.deselectRow(at: indexPath, animated: true)
-        let vc = WebViewController()
-        
-        print("History shared \(History.shared.history)")
-        
-        navigationController?.pushViewController(vc, animated: true)
-        vc.webURL = "\(String(describing: data.url))"
-        
-        articleToAdd = Article(source: SourcesHistory(id: data.source.id, name: data.source.name), author: data.author, title: data.title, description: data.description, url: data.url, urlToImage: data.urlToImage, publishedAt: data.publishedAt, content: data.content)
-        
-        if let article = articleToAdd?.url {
-            
-            let current = getCurrentDate()
-            articleToAdd?.publishedAt = current.date
-            if !History.shared.history.contains(where: {$0.url == article }) {
-                History.shared.history.insert(articleToAdd!, at: 0)
-            }
-            
-            else {
-                let index = History.shared.history.firstIndex(where: { $0.url == article })
-                History.shared.history.remove(at: index!)
-                History.shared.history.insert(articleToAdd!, at: 0)
-            }
-        }
+        viewModel.didSelectedCell(tableView: tableView, indexPath: indexPath)
     }
 }
 
@@ -703,7 +629,7 @@ extension MainNewsController: UICollectionViewDelegate, UICollectionViewDataSour
         print("History shared \(History.shared.history)")
         
         navigationController?.pushViewController(vc, animated: true)
-        vc.webURL = "\(String(describing: data.url))"
+//        vc.webURL = "\(String(describing: data.url))"
         
         articleToAdd = Article(source: SourcesHistory(id: data.source.id, name: data.source.name), author: data.author, title: data.title, description: data.description, url: data.url, urlToImage: data.urlToImage, publishedAt: data.publishedAt, content: data.content)
         

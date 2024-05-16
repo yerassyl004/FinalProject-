@@ -639,7 +639,7 @@ extension ForUserController: UITableViewDelegate, UITableViewDataSource {
             
     //        delegate?.sendDataToDestination(data: "DATA SENDED \(data.url)")
             navigationController?.pushViewController(vc, animated: true)
-            vc.webURL = "\(String(describing: data.url))"
+//            vc.webURL = "\(String(describing: data.url))"
             
         case 1:
             let data = dataUS()[indexPath.row]
@@ -666,7 +666,7 @@ extension ForUserController: UITableViewDelegate, UITableViewDataSource {
             
     //        delegate?.sendDataToDestination(data: "DATA SENDED \(data.url)")
             navigationController?.pushViewController(vc, animated: true)
-            vc.webURL = "\(String(describing: data.url))"
+//            vc.webURL = "\(String(describing: data.url))"
             
             
         case 2:
@@ -693,7 +693,7 @@ extension ForUserController: UITableViewDelegate, UITableViewDataSource {
             
     //        delegate?.sendDataToDestination(data: "DATA SENDED \(data.url)")
             navigationController?.pushViewController(vc, animated: true)
-            vc.webURL = "\(String(describing: data.url))"
+//            vc.webURL = "\(String(describing: data.url))"
             
         case 3:
             let data = dataCN()[indexPath.row]
@@ -721,7 +721,7 @@ extension ForUserController: UITableViewDelegate, UITableViewDataSource {
             }
             
             navigationController?.pushViewController(vc, animated: true)
-            vc.webURL = "\(String(describing: data.url))"
+//            vc.webURL = "\(String(describing: data.url))"
             
         case 4:
             let data = dataJA()[indexPath.row]
@@ -747,7 +747,7 @@ extension ForUserController: UITableViewDelegate, UITableViewDataSource {
             
     //        delegate?.sendDataToDestination(data: "DATA SENDED \(data.url)")
             navigationController?.pushViewController(vc, animated: true)
-            vc.webURL = "\(String(describing: data.url))"
+//            vc.webURL = "\(String(describing: data.url))"
             
         case 5:
             let data = dataAU()[indexPath.row]
@@ -772,7 +772,7 @@ extension ForUserController: UITableViewDelegate, UITableViewDataSource {
             }
             
             navigationController?.pushViewController(vc, animated: true)
-            vc.webURL = "\(String(describing: data.url))"
+//            vc.webURL = "\(String(describing: data.url))"
             
         case 6:
             let data = dataCA()[indexPath.row]
@@ -799,7 +799,7 @@ extension ForUserController: UITableViewDelegate, UITableViewDataSource {
             
             let vc = WebViewController()
             navigationController?.pushViewController(vc, animated: true)
-            vc.webURL = "\(String(describing: data.url))"
+//            vc.webURL = "\(String(describing: data.url))"
             
         default:
             break

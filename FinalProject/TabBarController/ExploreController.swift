@@ -491,7 +491,7 @@ extension ExploreController: UITableViewDelegate, UITableViewDataSource {
         
         delegate?.sendDataToDestination(data: "DATA SENDED \(data.url)")
         navigationController?.pushViewController(vc, animated: true)
-        vc.webURL = "\(String(describing: data.url))"
+//        vc.webURL = "\(String(describing: data.url))"
         
         articleToAdd = Article(source: SourcesHistory(id: data.source.id, name: data.source.name), author: data.author, title: data.title, description: data.description, url: data.url, urlToImage: data.urlToImage, publishedAt: data.publishedAt, content: data.content)
         

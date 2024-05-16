@@ -419,7 +419,7 @@ extension VideoNewsController: UITableViewDelegate, UITableViewDataSource {
         
         let vc = WebViewController()
         navigationController?.pushViewController(vc, animated: true)
-        vc.webURL = "\(String(describing: data.url))"
+//        vc.webURL = "\(String(describing: data.url))"
     }
 }
 

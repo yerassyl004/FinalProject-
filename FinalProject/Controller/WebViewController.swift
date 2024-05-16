@@ -17,7 +17,7 @@ class WebViewController: UIViewController, WKNavigationDelegate, DataTransferDel
         self.data = data
     }
     
-    var webURL: String = ""
+    var webURL: URL?
     
     let webView: WKWebView = {
         let webView = WKWebView()
@@ -41,7 +41,7 @@ class WebViewController: UIViewController, WKNavigationDelegate, DataTransferDel
             webView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
         
-        if let url = URL(string: String(webURL)) {
+        if let url = webURL {
             let request = URLRequest(url: url)
             webView.load(request)
         }
