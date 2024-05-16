@@ -15,14 +15,14 @@ class MainNewsController: UIViewController, UIScrollViewDelegate {
     
     var isLoadingData = false
     
-    var newsData: [Articles] = []
+    var newsCollectionData = [MainViewModel.CollectionDesk]()
     
     var newsMainData: [Articles] = []
     
     var tableViewHeight: CGFloat = 0
     
     var heigtTable = 0
-    var newsTableData = [NewsDesk]()
+    var newsTableData = [MainViewModel.NewsDesk]()
     // MARK: - Properties
     private let viewModel = MainNewsViewModel()
     let activityIndicator = UIActivityIndicatorView(style: .large)
@@ -65,13 +65,11 @@ class MainNewsController: UIViewController, UIScrollViewDelegate {
     
     let newsMainView: UIView = {
         let view = UIView()
-//        view.backgroundColor = .blue
         view.layer.cornerRadius = 10
         return view
     }()
     let mainImageView: UIImageView = {
         let image = UIImageView()
-//        image.backgroundColor = .red
         image.contentMode = .scaleAspectFill
         image.clipsToBounds = true
         image.translatesAutoresizingMaskIntoConstraints = false
@@ -79,7 +77,6 @@ class MainNewsController: UIViewController, UIScrollViewDelegate {
     }()
     let titleMainLabel: UILabel = {
         let label = UILabel()
-        //        label.backgroundColor = .green
         label.font = UIFont(name: "Georgia-Bold", size: 24)
         label.layer.shadowColor = UIColor.gray.cgColor
         label.layer.shadowOffset = CGSize(width: 1, height: 1)
@@ -145,23 +142,15 @@ class MainNewsController: UIViewController, UIScrollViewDelegate {
         return label
     }()
     
-    
-    
-//    MARK: MAIN VIEW
-    
+//    MARK: - MAIN VIEW
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel.fetchNewsTableView()
-        self.newsTableData = viewModel.newsTableData
-        tableView.reloadData()
-        viewModel.navigationController = self.navigationController
-        view.backgroundColor = UIColor.systemGray6
-        navigationItem.title = "Popular"
-               
-        print(heigtTable)
+        setupViews()
+        
         setupScrollView()
+        setupConstraints()
         fetchNewsHedlines()
-//        CoreDataManager.shared.logCoreDataDBPath()
+        
         AuthService.shared.fetchUser { [weak self] user, error in
             guard let self = self else { return }
             if let error = error {
@@ -173,7 +162,6 @@ class MainNewsController: UIViewController, UIScrollViewDelegate {
                 self.label.text = "\(user.username)\n\(user.email)"
             }
         }
-        
         
         ApiManager.shared.fetchNewsMain { result in
             switch result {
@@ -191,9 +179,6 @@ class MainNewsController: UIViewController, UIScrollViewDelegate {
                         self.contentLabel.text = firstArticle.description
                     }
                 }
-                for article in newsData.articles {
-//                    print("Author: \(article.author ?? "N/A")")
-                }
             case .failure(let error):
                 print("Error fetching news data: \(error)")
             }
@@ -205,8 +190,6 @@ class MainNewsController: UIViewController, UIScrollViewDelegate {
             activityIndicator.stopAnimating()
         }
     }
-    
-    
     
     func fetchNewsHedlines() {
         isLoadingData = true
@@ -227,53 +210,23 @@ class MainNewsController: UIViewController, UIScrollViewDelegate {
         }
     }
     
-    func fetchNewsMain() {
-        isLoadingData = true
-        ApiManager.shared.fetchNewsMain { result in
-            switch result {
-            case .success(let newsData):
-                self.newsDataNews = newsData.articles
-                DispatchQueue.main.async {
-                    self.collectionView.reloadData()
-                    self.tableView.reloadData()
-                    self.updateTable(hilght: self.tableView.contentSize.height)
-                    self.isLoadingData = false
-                    
-                }
-            case .failure(let error):
-                print("Error fetching news data: \(error)")
-            }
-        }
+    // MARK: - Setup Navigation
+    private func setupNavigation() {
+        self.navigationItem.title = "Popular"
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(didTapLogout))
     }
-    
-    private var author: String = ""
-    
-//    func fetchDataAndUpdateUI() {
-////        print(author)
-//        
-//        ApiManager.shared.fetchNews { result in
-//            switch result {
-//            case .success(let data):
-//                
-//                //                print(data.articles)
-//                DispatchQueue.main.async {
-//                    self.tableView.reloadData()
-//                }
-//                
-//            case .failure(let error):
-//                // Handle error
-//                print("Error fetching news data: \(error)")
-//            }
-//        }
-//    }
     
     // MARK: - Setup View
-    private func setupUI() {
-        self.view.backgroundColor = .systemBackground
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(didTapLogout))
-        self.view.addSubview(label)
+    private func setupViews() {
+        view.backgroundColor = UIColor.systemGray6
+        viewModel.fetchNewsTableView()
+        self.newsTableData = viewModel.newsTableData
+        tableView.reloadData()
+        viewModel.navigationController = self.navigationController
+        view.addSubview(label)
         
     }
+    
     func setupScrollView() {
         
         view.addSubview(scrollView)
@@ -368,8 +321,6 @@ class MainNewsController: UIViewController, UIScrollViewDelegate {
             contentLabel.rightAnchor.constraint(equalTo: testView.rightAnchor, constant: -10),
             contentLabel.bottomAnchor.constraint(equalTo: testView.bottomAnchor),
         ])
-//        table.addSubview(tableView)
-        setupConstraints()
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -545,63 +496,11 @@ extension MainNewsController: UITableViewDelegate, UITableViewDataSource {
 
 extension MainNewsController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return newsData.count
+        return newsCollectionData.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        let data = newsData[indexPath.row]
-        
-        var releasedTime = ""
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        let releaseDateString = "2023-01-01 12:00:00" // Replace this with your release date
-        if let releaseDate = dateFormatter.date(from: releaseDateString) {
-            let hoursSinceReleaseDate = hoursSinceRelease(releaseDate: data.publishedAt)
-            if hoursSinceReleaseDate > 59 {
-                if Double(hoursSinceReleaseDate / 60) > 1.5 {
-                    releasedTime = "\(hoursSinceReleaseDate / 60 + 1)h ago"
-                    print("\(hoursSinceReleaseDate / 60 + 1)h ago")
-                }
-                else if Double(hoursSinceReleaseDate / 60) > 23 {
-                    if Double(hoursSinceReleaseDate % 60) < 20 && Double(hoursSinceReleaseDate/60) > 1 {
-                        releasedTime = "\(Double(hoursSinceReleaseDate / 60))d ago"
-                    }
-                    else {
-                        releasedTime = "\(Double(hoursSinceReleaseDate / 60) + 1)d ago"
-                    }
-                }
-                else {
-                    releasedTime = "\(hoursSinceReleaseDate / 60)h ago"
-                    print("\(hoursSinceReleaseDate / 60)h ago")
-                }
-            }
-            else {
-                releasedTime = "\(hoursSinceReleaseDate)m ago"
-                print("\(hoursSinceReleaseDate)m ago")
-            }
-        } else {
-            print("Error parsing release date.")
-        }
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! MainCollectionViewCell
-       
-        
-        func hoursSinceRelease(releaseDate: Date) -> Int {
-            let currentDate = Date()
-            let calendar = Calendar.current
-            if let difference = calendar.dateComponents([.hour], from: releaseDate, to: currentDate).hour {
-                
-                return difference
-            } else {
-                return 0
-            }
-        }
-        
-        let url = URL(string: data.urlToImage ?? "")
-        cell.label.text = data.title
-        cell.imageView.kf.setImage(with: url)
-        cell.dateLabel.text = releasedTime
-        
+        let cell = viewModel.cellNewsCollection(collectionView: collectionView, indexPath: indexPath)
         return cell
     }
     
@@ -618,20 +517,20 @@ extension MainNewsController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let data = newsData[indexPath.row]
+        let data = newsCollectionData[indexPath.row]
         
         var articleToAdd: Article?
         
         collectionView.deselectItem(at: indexPath, animated: true)
         
-        History.shared.history.append(Article(source: SourcesHistory(id: data.source.id, name: data.source.name), author: data.author, title: data.title, description: data.description, url: data.url, urlToImage: data.urlToImage, publishedAt: data.publishedAt, content: data.content))
-        let vc = WebViewController()
-        print("History shared \(History.shared.history)")
-        
-        navigationController?.pushViewController(vc, animated: true)
-//        vc.webURL = "\(String(describing: data.url))"
-        
-        articleToAdd = Article(source: SourcesHistory(id: data.source.id, name: data.source.name), author: data.author, title: data.title, description: data.description, url: data.url, urlToImage: data.urlToImage, publishedAt: data.publishedAt, content: data.content)
+//        History.shared.history.append(Article(source:/* SourcesHistory(id: data.source.id, name: data.source.name), author: data.author, title: data.title, description: data.description, url: data.url, urlToImage: data.urlToImage, publishedAt: data.publishedAt, content: data.content))*/
+//        let vc = WebViewController()
+//        print("History shared \(History.shared.history)")
+//        
+//        navigationController?.pushViewController(vc, animated: true)
+////        vc.webURL = "\(String(describing: data.url))"
+//        
+//        articleToAdd = Article(source: SourcesHistory(id: data.source.id, name: data.source.name), author: data.author, title: data.title, description: data.description, url: data.url, urlToImage: data.urlToImage, publishedAt: data.publishedAt, content: data.content)
         
         if let article = articleToAdd?.url {
             

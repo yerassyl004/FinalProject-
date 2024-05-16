@@ -92,10 +92,10 @@ final class NewsTableViewCell: UITableViewCell {
         ])
     }
     
-    public func configure(model: NewsDesk) {
+    public func configure(model: MainViewModel.NewsDesk) {
         titleLabel.text = model.title
         contentLabel.text = model.content
-        newsImageView.kf.setImage(with: model.url)
+        newsImageView.kf.setImage(with: model.imageURL)
     }
 
 }

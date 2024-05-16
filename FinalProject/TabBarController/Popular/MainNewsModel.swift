@@ -7,8 +7,19 @@
 
 import UIKit
 
-struct NewsDesk {
-    let url: URL
-    let title: String
-    let content: String
+enum MainViewModel {
+    
+    struct NewsDesk {
+        let url: URL
+        let title: String
+        let content: String
+        let imageURL: URL
+    }
+    
+    struct CollectionDesk {
+        let image: URL
+        let title: String
+        let date: Date
+        let url: URL
+    }
 }
