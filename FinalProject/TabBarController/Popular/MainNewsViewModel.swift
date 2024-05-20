@@ -20,18 +20,14 @@ final class MainNewsViewModel {
         let data = newsTableData[indexPath.row]
         cell.backgroundColor = .systemBackground
         cell.configure(model: data)
-        
         return cell
     }
     
     func didSelectedCell(tableView: UITableView, indexPath: IndexPath) {
         let data = newsTableData[indexPath.row]
-        
-        var articleToAdd: HistoryModel?
         let vc = WebViewController()
         navigationController?.pushViewController(vc, animated: true)
         vc.webURL = data.url
-        articleToAdd = HistoryModel(title: data.content, url: data.url, date: Date())
     }
     
     // MARK: - CollectionViewCell
@@ -39,6 +35,13 @@ final class MainNewsViewModel {
         let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as MainCollectionViewCell
         
         return cell
+    }
+    
+    func didSelectCollection(collectionView: UICollectionView, indexPath: IndexPath) {
+        let data = newsCollectionData[indexPath.row]
+        let vc = WebViewController()
+        navigationController?.pushViewController(vc, animated: true)
+        vc.webURL = data.url
     }
     
     // MARK: - Fetch Data
@@ -62,7 +65,7 @@ final class MainNewsViewModel {
         }
     }
     
-    func fetchNewsHedlines() {
+    func fetchNewsCollection() {
         ApiManager.shared.fetchNewsHedlines { result in
             switch result {
             case .success(let newsData):

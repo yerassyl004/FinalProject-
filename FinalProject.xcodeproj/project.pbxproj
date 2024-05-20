@@ -20,6 +20,8 @@
 		0E4F9D112BF63E35005E39FD /* UITableViewCell+Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4F9D102BF63E35005E39FD /* UITableViewCell+Reusable.swift */; };
 		0E4F9D132BF63E50005E39FD /* UICollectionView+Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4F9D122BF63E50005E39FD /* UICollectionView+Register.swift */; };
 		0E4F9D152BF63E6B005E39FD /* UICollectionViewCell+Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4F9D142BF63E6B005E39FD /* UICollectionViewCell+Reusable.swift */; };
+		0E4F9D172BF64157005E39FD /* MainCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4F9D162BF64157005E39FD /* MainCollectionView.swift */; };
+		0E4F9D192BF64175005E39FD /* MainTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4F9D182BF64175005E39FD /* MainTableView.swift */; };
 		0E52CA4D2B35A198005E8FAC /* ContryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E52CA4C2B35A198005E8FAC /* ContryTableViewCell.swift */; };
 		0E53FD842B303EBB00EB9748 /* ExploreCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E53FD832B303EBB00EB9748 /* ExploreCollectionViewCell.swift */; };
 		0E760F772B313C7F0023001D /* HistoryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E760F762B313C7F0023001D /* HistoryData.swift */; };
@@ -72,6 +74,8 @@
 		0E4F9D102BF63E35005E39FD /* UITableViewCell+Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Reusable.swift"; sourceTree = "<group>"; };
 		0E4F9D122BF63E50005E39FD /* UICollectionView+Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Register.swift"; sourceTree = "<group>"; };
 		0E4F9D142BF63E6B005E39FD /* UICollectionViewCell+Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewCell+Reusable.swift"; sourceTree = "<group>"; };
+		0E4F9D162BF64157005E39FD /* MainCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionView.swift; sourceTree = "<group>"; };
+		0E4F9D182BF64175005E39FD /* MainTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableView.swift; sourceTree = "<group>"; };
 		0E52CA4C2B35A198005E8FAC /* ContryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContryTableViewCell.swift; sourceTree = "<group>"; };
 		0E53FD832B303EBB00EB9748 /* ExploreCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreCollectionViewCell.swift; sourceTree = "<group>"; };
 		0E760F762B313C7F0023001D /* HistoryData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryData.swift; sourceTree = "<group>"; };
@@ -161,6 +165,8 @@
 			isa = PBXGroup;
 			children = (
 				0E4F9D082BF638D2005E39FD /* MainView.swift */,
+				0E4F9D162BF64157005E39FD /* MainCollectionView.swift */,
+				0E4F9D182BF64175005E39FD /* MainTableView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -456,6 +462,7 @@
 				0E4F9D002BF61BD1005E39FD /* MainNewsViewModel.swift in Sources */,
 				0EA56B152B2D751200D6EC12 /* ForgotPasswordController.swift in Sources */,
 				0E760F7D2B3157240023001D /* SettingsTableViewCell.swift in Sources */,
+				0E4F9D172BF64157005E39FD /* MainCollectionView.swift in Sources */,
 				0E41558F2B32C36E00633AE7 /* EditController.swift in Sources */,
 				0E0C43002B2E8D6E00236267 /* NewsTableViewCell.swift in Sources */,
 				0EA56B052B2D735A00D6EC12 /* WebViewerController.swift in Sources */,
@@ -468,6 +475,7 @@
 				0E0C43042B2F154800236267 /* WebViewController.swift in Sources */,
 				0E4F9D022BF61BDF005E39FD /* MainNewsModel.swift in Sources */,
 				0EA56B0D2B2D748D00D6EC12 /* CustomButton.swift in Sources */,
+				0E4F9D192BF64175005E39FD /* MainTableView.swift in Sources */,
 				0E760F792B3142A00023001D /* UserTableViewCell.swift in Sources */,
 				0EA56B092B2D743100D6EC12 /* LoginController.swift in Sources */,
 				0E760F772B313C7F0023001D /* HistoryData.swift in Sources */,

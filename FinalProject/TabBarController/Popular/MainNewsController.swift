@@ -149,7 +149,6 @@ class MainNewsController: UIViewController, UIScrollViewDelegate {
         
         setupScrollView()
         setupConstraints()
-        fetchNewsHedlines()
         
         AuthService.shared.fetchUser { [weak self] user, error in
             guard let self = self else { return }
@@ -191,25 +190,6 @@ class MainNewsController: UIViewController, UIScrollViewDelegate {
         }
     }
     
-    func fetchNewsHedlines() {
-        isLoadingData = true
-        ApiManager.shared.fetchNewsHedlines { result in
-            switch result {
-            case .success(let newsData):
-                self.newsData = newsData.articles
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                    self.collectionView.reloadData()
-                    self.heigtTable = Int(self.tableView.contentSize.height)
-                    self.isLoadingData = false
-                    
-                }
-            case .failure(let error):
-                print("Error fetching news data: \(error)")
-            }
-        }
-    }
-    
     // MARK: - Setup Navigation
     private func setupNavigation() {
         self.navigationItem.title = "Popular"
@@ -220,11 +200,12 @@ class MainNewsController: UIViewController, UIScrollViewDelegate {
     private func setupViews() {
         view.backgroundColor = UIColor.systemGray6
         viewModel.fetchNewsTableView()
+        viewModel.fetchNewsCollection()
         self.newsTableData = viewModel.newsTableData
+        self.newsCollectionData = viewModel.newsCollectionData
         tableView.reloadData()
         viewModel.navigationController = self.navigationController
         view.addSubview(label)
-        
     }
     
     func setupScrollView() {
@@ -517,35 +498,7 @@ extension MainNewsController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let data = newsCollectionData[indexPath.row]
-        
-        var articleToAdd: Article?
-        
-        collectionView.deselectItem(at: indexPath, animated: true)
-        
-//        History.shared.history.append(Article(source:/* SourcesHistory(id: data.source.id, name: data.source.name), author: data.author, title: data.title, description: data.description, url: data.url, urlToImage: data.urlToImage, publishedAt: data.publishedAt, content: data.content))*/
-//        let vc = WebViewController()
-//        print("History shared \(History.shared.history)")
-//        
-//        navigationController?.pushViewController(vc, animated: true)
-////        vc.webURL = "\(String(describing: data.url))"
-//        
-//        articleToAdd = Article(source: SourcesHistory(id: data.source.id, name: data.source.name), author: data.author, title: data.title, description: data.description, url: data.url, urlToImage: data.urlToImage, publishedAt: data.publishedAt, content: data.content)
-        
-        if let article = articleToAdd?.url {
-            
-            let current = getCurrentDate()
-            articleToAdd?.publishedAt = current.date
-            if !History.shared.history.contains(where: {$0.url == article }) {
-                History.shared.history.insert(articleToAdd!, at: 0)
-            }
-            
-            else {
-                let index = History.shared.history.firstIndex(where: { $0.url == article })
-                History.shared.history.remove(at: index!)
-                History.shared.history.insert(articleToAdd!, at: 0)
-            }
-        }
+        viewModel.didSelectCollection(collectionView: collectionView, indexPath: indexPath)
     }
     
 }
