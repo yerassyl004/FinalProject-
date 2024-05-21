@@ -1,1 +1,1 @@
-MVVM Architecture, SnapKit, Kingfisher, Alamofire, Moya
+News API, MVVM Architecture, SnapKit, Kingfisher, Alamofire, Moya
