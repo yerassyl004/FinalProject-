@@ -13,7 +13,6 @@ final class MainNewsViewModel {
     var newsCollectionData = [MainViewModel.CollectionDesk]()
     weak var navigationController: UINavigationController?
     
-    
     // MARK: - TableViewCell
     func cellNewsTable(tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(forIndexPath: indexPath) as NewsTableViewCell

@@ -149,6 +149,7 @@ class MainNewsController: UIViewController, UIScrollViewDelegate {
         
         setupScrollView()
         setupConstraints()
+        configureContainerView()
         
         AuthService.shared.fetchUser { [weak self] user, error in
             guard let self = self else { return }
@@ -199,8 +200,6 @@ class MainNewsController: UIViewController, UIScrollViewDelegate {
     // MARK: - Setup View
     private func setupViews() {
         view.backgroundColor = UIColor.systemGray6
-        viewModel.fetchNewsTableView()
-        viewModel.fetchNewsCollection()
         self.newsTableData = viewModel.newsTableData
         self.newsCollectionData = viewModel.newsCollectionData
         tableView.reloadData()

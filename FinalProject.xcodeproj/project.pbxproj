@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E02C93D2BFC75B100353D2E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0E02C93C2BFC75B100353D2E /* GoogleService-Info.plist */; };
 		0E0C43002B2E8D6E00236267 /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0C42FF2B2E8D6E00236267 /* NewsTableViewCell.swift */; };
 		0E0C43022B2F016500236267 /* ExploreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0C43012B2F016500236267 /* ExploreTableViewCell.swift */; };
 		0E0C43042B2F154800236267 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0C43032B2F154800236267 /* WebViewController.swift */; };
@@ -38,7 +39,6 @@
 		0EA56AF32B2D5DE700D6EC12 /* FinalProject.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0EA56AF12B2D5DE700D6EC12 /* FinalProject.xcdatamodeld */; };
 		0EA56AF52B2D5DE800D6EC12 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0EA56AF42B2D5DE800D6EC12 /* Assets.xcassets */; };
 		0EA56AF82B2D5DE800D6EC12 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0EA56AF62B2D5DE800D6EC12 /* LaunchScreen.storyboard */; };
-		0EA56B012B2D6F8C00D6EC12 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0EA56B002B2D6F8C00D6EC12 /* GoogleService-Info.plist */; };
 		0EA56B032B2D730500D6EC12 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA56B022B2D730500D6EC12 /* AuthService.swift */; };
 		0EA56B052B2D735A00D6EC12 /* WebViewerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA56B042B2D735900D6EC12 /* WebViewerController.swift */; };
 		0EA56B072B2D738D00D6EC12 /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA56B062B2D738D00D6EC12 /* AlertManager.swift */; };
@@ -61,6 +61,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0E02C93C2BFC75B100353D2E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0E0C42FF2B2E8D6E00236267 /* NewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
 		0E0C43012B2F016500236267 /* ExploreTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreTableViewCell.swift; sourceTree = "<group>"; };
 		0E0C43032B2F154800236267 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
@@ -95,7 +96,6 @@
 		0EA56AF72B2D5DE800D6EC12 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0EA56AF92B2D5DE800D6EC12 /* FinalProject.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FinalProject.entitlements; sourceTree = "<group>"; };
 		0EA56AFA2B2D5DE800D6EC12 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0EA56B002B2D6F8C00D6EC12 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0EA56B022B2D730500D6EC12 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		0EA56B042B2D735900D6EC12 /* WebViewerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewerController.swift; sourceTree = "<group>"; };
 		0EA56B062B2D738D00D6EC12 /* AlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
@@ -231,6 +231,7 @@
 		0EA56AE72B2D5DE700D6EC12 /* FinalProject */ = {
 			isa = PBXGroup;
 			children = (
+				0E02C93C2BFC75B100353D2E /* GoogleService-Info.plist */,
 				0E52CA4B2B35A174005E8FAC /* Cells */,
 				0EA56B1C2B2DA67F00D6EC12 /* ApiModels */,
 				0EA56B1B2B2DA39400D6EC12 /* Views */,
@@ -243,7 +244,6 @@
 				0EA56AF62B2D5DE800D6EC12 /* LaunchScreen.storyboard */,
 				0EA56AF42B2D5DE800D6EC12 /* Assets.xcassets */,
 				0EA56AEE2B2D5DE700D6EC12 /* Main.storyboard */,
-				0EA56B002B2D6F8C00D6EC12 /* GoogleService-Info.plist */,
 				0EA56AF12B2D5DE700D6EC12 /* FinalProject.xcdatamodeld */,
 			);
 			path = FinalProject;
@@ -389,7 +389,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0EA56B012B2D6F8C00D6EC12 /* GoogleService-Info.plist in Resources */,
+				0E02C93D2BFC75B100353D2E /* GoogleService-Info.plist in Resources */,
 				0EA56AF82B2D5DE800D6EC12 /* LaunchScreen.storyboard in Resources */,
 				0EA56AF52B2D5DE800D6EC12 /* Assets.xcassets in Resources */,
 				0EA56AF02B2D5DE700D6EC12 /* Main.storyboard in Resources */,
@@ -568,7 +568,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -625,7 +625,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -642,6 +642,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = FinalProject/FinalProject.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = GPM7F44Q5U;
@@ -657,8 +658,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = yerassyl.FinalProject;
+				PRODUCT_BUNDLE_IDENTIFIER = kg.startmobile.optima1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -672,6 +674,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = FinalProject/FinalProject.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = GPM7F44Q5U;
@@ -687,8 +690,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = yerassyl.FinalProject;
+				PRODUCT_BUNDLE_IDENTIFIER = kg.startmobile.optima1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
